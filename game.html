@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>💎 Игра - КЛИКЕР ЭПОХИ</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Эпичный космический фон -->
+    <div class="galaxy-bg">
+        <div class="nebula"></div>
+        <div class="stars-layer"></div>
+        <div class="shooting-stars"></div>
+    </div>
+
+    <!-- Навигация -->
+    <nav class="main-nav glass-effect">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <span class="logo-glow">✨КЛИКЕР✨</span>
+            </div>
+            <div class="nav-links">
+                <a href="game.html" class="nav-link active">💎 Игра</a>
+                <a href="shop.html" class="nav-link">🏪 Магазин</a>
+                <a href="stats.html" class="nav-link">📊 Статистика</a>
+                <a href="profile.html" class="nav-link">👤 Профиль</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="game-main">
+        <div class="game-container glass-card" id="gameContainer">
+            <!-- Индикатор пользователя -->
+            <div class="user-header">
+                <div class="user-avatar">
+                    <span class="avatar-emoji" id="userAvatar">👤</span>
+                </div>
+                <div class="user-info">
+                    <span class="user-name" id="userName">Игрок</span>
+                    <span class="user-email" id="userEmail">player@email.com</span>
+                </div>
+                <div class="save-badge" id="saveIndicator">💾 автосохранение</div>
+            </div>
+
+            <!-- Счётчик с анимацией -->
+            <div class="crystal-panel" id="crystalPanel">
+                <div class="crystal-icon">💎</div>
+                <div class="crystal-count" id="scoreDisplay">0</div>
+                <div class="crystal-label">кристаллов</div>
+                <div class="crystal-particles" id="crystalParticles"></div>
+            </div>
+
+            <!-- Кнопка клика с эффектом взрыва -->
+            <div class="clicker-area">
+                <button class="mega-clicker" id="clickButton">
+                    <div class="clicker-inner">
+                        <span class="clicker-emoji">💎</span>
+                        <span class="clicker-text">КЛИК</span>
+                        <span class="clicker-badge" id="clickValueBadge">+1</span>
+                    </div>
+                    <div class="clicker-ring"></div>
+                    <div class="clicker-ring2"></div>
+                    <div class="clicker-ring3"></div>
+                    
+                    <!-- Эффекты взрыва (появляются при клике) -->
+                    <div class="explosion-effect" id="explosion1"></div>
+                    <div class="explosion-effect" id="explosion2"></div>
+                    <div class="explosion-effect" id="explosion3"></div>
+                    
+                    <!-- Искры -->
+                    <div class="spark-effect" id="spark1"></div>
+                    <div class="spark-effect" id="spark2"></div>
+                    <div class="spark-effect" id="spark3"></div>
+                    <div class="spark-effect" id="spark4"></div>
+                    <div class="spark-effect" id="spark5"></div>
+                </button>
+            </div>
+
+            <!-- Всплывающие числа (красиво анимированы) -->
+            <div class="floating-numbers-container" id="floatingNumbers"></div>
+
+            <!-- Быстрая статистика -->
+            <div class="quick-stats">
+                <div class="stat-item">
+                    <div class="stat-icon">⚡</div>
+                    <div class="stat-value" id="perClickDisplay">1</div>
+                    <div class="stat-label">за клик</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-icon">📈</div>
+                    <div class="stat-value" id="levelDisplay">1</div>
+                    <div class="stat-label">уровень</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-icon">🔄</div>
+                    <div class="stat-value" id="totalClicksDisplay">0</div>
+                    <div class="stat-label">кликов</div>
+                </div>
+            </div>
+
+            <!-- Улучшения -->
+            <div class="upgrades-section">
+                <h3 class="section-title">
+                    <span class="title-icon">⚡</span>
+                    Быстрые улучшения
+                    <span class="title-icon">⚡</span>
+                </h3>
+                <div class="upgrade-row">
+                    <button class="upgrade-btn-small" id="quickPowerBtn">
+                        <span class="upgrade-icon">⚡</span>
+                        <span class="upgrade-info">
+                            <span class="upgrade-name">+1 сила</span>
+                            <span class="upgrade-cost" id="quickPowerCost">10</span>
+                        </span>
+                        <span class="upgrade-effect"></span>
+                    </button>
+                    <button class="upgrade-btn-small" id="quickMultiBtn">
+                        <span class="upgrade-icon">✨</span>
+                        <span class="upgrade-info">
+                            <span class="upgrade-name">×2 сила</span>
+                            <span class="upgrade-cost" id="quickMultiCost">50</span>
+                        </span>
+                        <span class="upgrade-effect"></span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Комбо-счетчик -->
+            <div class="combo-counter" id="comboCounter">
+                <span class="combo-text">🔥 Комбо</span>
+                <span class="combo-value" id="comboValue">0</span>
+            </div>
+
+            <!-- Кнопки управления -->
+            <div class="action-buttons">
+                <button class="action-btn save-btn" id="saveBtn">
+                    <span>💾</span> Сохранить
+                </button>
+                <button class="action-btn reset-btn" id="resetBtn">
+                    <span>⟳</span> Сброс
+                </button>
+                <button class="action-btn boost-btn" id="boostBtn">
+                    <span>⚡</span> Буст (30с)
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <!-- Контейнер для частиц клика -->
+    <div class="click-particles-container" id="clickParticles"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
